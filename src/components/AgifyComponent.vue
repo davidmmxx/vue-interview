@@ -1,12 +1,16 @@
 <template>
-  <label for="name">Name</label>
-  <input id= 'name' name="name" v-model="name"/>
-  <span style="color: crimson" v-if="nameValidation">{{nameValidation}}</span>
-  <button @click="guessAge" :disabled="nameValidation.length > 0 || name.length === 0">Guess</button>
-  <br/>
-  <span v-if="isLoading">loading...</span>
-  <span v-else-if="isError">Error during age guessing</span>
-  <span v-else-if="agifyData">Your age is {{agifyData.age}}</span>
+  <form @submit.prevent="guessAge">
+    <label for="name">Name</label>
+    <input id= 'name' name="name" v-model="name"/>
+    <p style="color: crimson" v-if="nameValidation">{{nameValidation}}</p>
+    <button type="submit" :disabled="nameValidation.length > 0 || name.length === 0">Guess</button>
+      <br/>
+      <template v-if="!nameValidation">
+        <span v-if="isLoading">loading...</span>
+        <span v-else-if="isError">Error during age guessing</span>
+        <span v-else-if="agifyData">{{name}}, Your age is {{agifyData.age}}</span>
+      </template>
+  </form>
 </template>
 
 <script lang="ts">
