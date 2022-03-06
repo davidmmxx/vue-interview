@@ -4,16 +4,25 @@
     <input id= 'name' name="name" v-model="name"/>
     <p style="color: crimson" v-if="nameValidation">{{nameValidation}}</p>
     <button type="submit" :disabled="isDisabled">Guess</button>
-      <br/>
-      <template v-if="!nameValidation">
-        <span v-if="isLoading">loading...</span>
-        <span v-else-if="isError">error during age guessing</span>
-        <span v-else-if="agifyData">{{name}}, your age is {{agifyData.age}}</span>
-      </template>
+    <br/>
+    <template v-if="!nameValidation">
+      <span v-if="isLoading">loading...</span>
+      <span v-else-if="isError">error during age guessing</span>
+      <span v-else-if="agifyData">{{name}}, your age is {{agifyData.age}}</span>
+    </template>
   </form>
 </template>
 
 <script lang="ts">
+
+/* na stranke je par chyb
+
+- isLoading flag nie je spravne nastaveny pri volani REST API
+- uprav validaciu mena aby nepovolila zadanie menej nez 3 znaky (disablovanie buttonu plus validacna hlaska)
+
+ */
+
+
 
 // Zlepsenie prevedenim netypovanych objektov na Typescript interface
 // ake kniznice pre REST API poznas/si pouzival
@@ -24,7 +33,7 @@
 // oprava disablovania buttonu - aktualne nefunguje spravne
 // ake validacne frameworky poznas/si pouzival
 
-// volanie backendu do composition api
+// **volanie backendu do composition api
 
 import {computed, defineComponent, ref, watch} from "vue";
 
@@ -56,7 +65,7 @@ export default defineComponent({
     watch(name, () => {
       if (name.value.length < 3) {
         nameValidation.value= 'Name is too short ...'
-      } else{
+      } else {
        nameValidation.value= ''
       }
     });
