@@ -3,7 +3,7 @@
     <label for="name">Name</label>
     <input id= 'name' name="name" v-model="name"/>
     <p style="color: crimson" v-if="nameValidation">{{nameValidation}}</p>
-    <button type="submit" :disabled="nameValidation.length > 0 || name.length === 0">Guess</button>
+    <button type="submit" :disabled="nameValidation.length > 0 || name.length === 0 ? 'disabled' : undefined">Guess</button>
       <br/>
       <template v-if="!nameValidation">
         <span v-if="isLoading">loading...</span>
@@ -51,7 +51,7 @@ export default defineComponent({
 
     watch(name, () => {
       if (name.value.length < 3) {
-        nameValidation.value= 'Meno je príliš krátke'
+        nameValidation.value= 'Name is too short ...'
       } else{
        nameValidation.value= ''
       }
