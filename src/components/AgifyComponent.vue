@@ -50,7 +50,7 @@ export default defineComponent({
     }
 
     const isDisabled = computed(() => {
-      return nameValidation.value.length > 0 || name.value.length === 0 ? 'disabled' : undefined
+      return nameValidation.value.length > 0 || name.value.length === 0
     })
 
     watch(name, () => {

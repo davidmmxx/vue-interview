@@ -1,7 +1,7 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <button @click="click">About</button>
+    <button @click="click">Another page</button>
   </nav>
   <router-view/>
 </template>
@@ -10,13 +10,10 @@
 import {defineComponent} from "vue";
 import {useRouter} from "vue-router";
 
-const COMPONENT_NAME='App';
 export default defineComponent({
-  name: COMPONENT_NAME,
+  name: 'App',
   setup() {
-
     const {push} = useRouter();
-
     function click() {
       push({name : 'about'})
     }
