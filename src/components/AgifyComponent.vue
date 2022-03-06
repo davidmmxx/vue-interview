@@ -3,12 +3,12 @@
     <label for="name">Name</label>
     <input id= 'name' name="name" v-model="name"/>
     <p style="color: crimson" v-if="nameValidation">{{nameValidation}}</p>
-    <button type="submit" :disabled="nameValidation.length > 0 || name.length === 0 ? 'disabled' : undefined">Guess</button>
+    <button type="submit" :disabled="isDisabled">Guess</button>
       <br/>
       <template v-if="!nameValidation">
         <span v-if="isLoading">loading...</span>
-        <span v-else-if="isError">Error during age guessing</span>
-        <span v-else-if="agifyData">{{name}}, Your age is {{agifyData.age}}</span>
+        <span v-else-if="isError">error during age guessing</span>
+        <span v-else-if="agifyData">{{name}}, your age is {{agifyData.age}}</span>
       </template>
   </form>
 </template>
@@ -26,7 +26,7 @@
 
 // volanie backendu do composition api
 
-import { defineComponent, ref, watch} from "vue";
+import {computed, defineComponent, ref, watch} from "vue";
 
 export default defineComponent({
   name: "AgifyComponent",
@@ -49,6 +49,10 @@ export default defineComponent({
       })
     }
 
+    const isDisabled = computed(() => {
+      return nameValidation.value.length > 0 || name.value.length === 0 ? 'disabled' : undefined
+    })
+
     watch(name, () => {
       if (name.value.length < 3) {
         nameValidation.value= 'Name is too short ...'
@@ -60,6 +64,7 @@ export default defineComponent({
     return {
       name,
       nameValidation,
+      isDisabled,
       guessAge,
       isLoading,
       isError,
