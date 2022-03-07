@@ -52,8 +52,6 @@ export default defineComponent({
     const isError = ref(false);
 
     function guessAge() {
-      isLoading.value = true;
-      isError.value = false;
       fetch('https://api.agify.io/?name=' + name.value).then(res => res.json()).then((data)=>
         agifyData.value = data
       )
@@ -64,7 +62,7 @@ export default defineComponent({
     // })
 
     watch(name, () => {
-      if (name.value.length < 1000) {
+      if (name.value.length < 0) {
         nameValidation.value= 'Name is too short ...'
       } else {
        nameValidation.value= ''
