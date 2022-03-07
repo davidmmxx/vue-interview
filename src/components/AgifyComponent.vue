@@ -20,7 +20,7 @@
 
 - isLoading flag nie je spravne nastaveny pri volani REST API
 - isError flag nie je spravne nastaveny pri volani REST API
-- uprav validaciu mena aby nepovolila zadanie menej nez 3 znaky (disablovanie buttonu plus validacna hlaska)
+- uprav validaciu mena aby musel zadat > 3 znaky (disablovanie buttonu plus validacna hlaska)
 
 */
 

@@ -8,7 +8,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'home',
     component: AgifyComponent
   },
-    // ADVANCED: naimportuj dynamicky do webpackChunkName:"another"
+    // ADVANCED: naimportuj dynamicky do webpackChunkName:"another". Co to v praxi znamena?
   {
     path: '/about',
     name: 'about',
