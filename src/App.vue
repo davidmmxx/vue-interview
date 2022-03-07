@@ -12,17 +12,15 @@
 import {defineComponent} from "vue";
 import {useRouter} from "vue-router";
 
-// dopln chybajucu funkciu pre button click tak, aby smerovala na routu /about
+/* BASIC
+- dopln chybajucu funkciu pre button click tak, aby smerovala na routu /about
+*/
 
 export default defineComponent({
   name: 'App',
   setup() {
-    const {push} = useRouter();
-    function click() {
-      push({name : 'about'})
-    }
+    useRouter();
     return {
-      click
     }
   }
 

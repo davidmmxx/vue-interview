@@ -8,27 +8,28 @@ const routes: Array<RouteRecordRaw> = [
     name: 'home',
     component: AgifyComponent
   },
-    // naimportuj dynamicky do webpackChunkName 'another'
+    // ADVANCED: naimportuj dynamicky do webpackChunkName:"another"
   {
     path: '/about',
     name: 'about',
     component: AboutView,
   },
-    // vytvor routu, ktora pred zobrazenim spravi redirect na www.google.com
-    // pre tuto routu nebudeme vytvarat aktivny prvok na kliknutie, ale potrebujeme vyskusat ci funguje :)
+    // uprav routu redirect, aby pred zobrazenim spravila redirect na www.google.com
+    // pre tuto routu nebudeme vytvarat aktivny prvok na kliknutie, ale potrebujeme nejak vyskusat ci funguje :) - ako vyskusat?
   {
     path: '/redirect',
     name: 'redirect',
     component: AboutView,
-    beforeEnter() {
-      window.location.assign('https://www.google.com')
-    }
   },
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+// zaloguj z ktorej routy na ktoru smeruje navigacia
+router.beforeEach(() => {
 })
 
 export default router
